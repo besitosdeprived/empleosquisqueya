@@ -7,6 +7,8 @@ import {
 	pgEnum,
 	numeric,
 	primaryKey,
+	boolean,
+	text,
 } from "drizzle-orm/pg-core";
 import { LocationTable } from "./location";
 import { type SQL, sql } from "drizzle-orm";
@@ -16,9 +18,29 @@ export const jobTypeEnum = pgEnum("jobtype", ["remote", "hybrid", "onsite"]);
 export const JobTable = pgTable("job", {
 	id: bigint({ mode: "bigint" }).primaryKey().generatedAlwaysAsIdentity(),
 	title: varchar({ length: 50 }).notNull(),
+	suffix: varchar({ length: 5 })
+		.generatedAlwaysAs(
+			(): SQL => sql`substring(gen_random_uuid()::text FROM 1 FOR 5)`,
+		)
+		.notNull(),
+	slug: text()
+		.generatedAlwaysAs(
+			(): SQL =>
+				sql`REGEXP_REPLACE(LOWER(TRIM(${JobTable.title})), '\s+', '-', 'g') || '-' || ${JobTable.suffix}`,
+		)
+		.unique()
+		.notNull(),
 	jobType: jobTypeEnum("job_type").notNull(),
 	salary: numeric({ scale: 6, precision: 2 }),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const JobPostTable = pgTable("job_post", {
+	id: bigint({ mode: "bigint" }).primaryKey().generatedAlwaysAsIdentity(),
+	jobId: bigint("job_id", { mode: "bigint" })
+		.references(() => JobTable.id)
+		.notNull(),
+	isPublished: boolean("is_published").default(true).notNull(),
 });
 
 export const JobRequirementTable = pgTable("job_requirement", {
