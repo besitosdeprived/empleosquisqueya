@@ -1,4 +1,5 @@
-INSERT INTO province (name, slug) VALUES
+INSERT INTO location (name, slug) VALUES
+('Remoto','remoto'),
 ('Azua', 'azua'),
 ('Bahoruco', 'bahoruco'),
 ('Barahona', 'barahona'),

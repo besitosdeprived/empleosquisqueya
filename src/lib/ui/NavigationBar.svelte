@@ -9,8 +9,8 @@
     const defaultNav: Path[] = [
         { href: "/", name: "home" },
         { href: "/empleos", name: "empleos" },
-        { href: "/login", name: "login" },
-        { href: "/register", name: "register" },
+        { href: "/ingresar", name: "ingresar" },
+        { href: "/registrarse", name: "registrarse" },
     ];
     // biome-ignore lint/style/useConst: <explanation>
     let { paths = defaultNav }: Props = $props();
@@ -30,8 +30,7 @@
         padding: 1rem;
         height: 75px;
         font-size: 1.3rem;
-        border: 1px dotted black;
-
+        border: 1px solid black;
         & a {
             text-decoration: none;
             color: inherit;

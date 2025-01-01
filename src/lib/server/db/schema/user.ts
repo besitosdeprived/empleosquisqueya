@@ -8,7 +8,7 @@ import {
 	pgEnum,
 } from "drizzle-orm/pg-core";
 
-import { ProvinceTable } from "./location";
+import { LocationTable } from "./location";
 
 export const genreEnum = pgEnum("genre", ["male", "female"]);
 
@@ -27,5 +27,5 @@ export const UserProfileInfoTable = pgTable("user_profile_info", {
 		.references(() => UserTable.id)
 		.notNull(),
 	genre: genreEnum(),
-	locationId: smallint("location_id").references(() => ProvinceTable.id),
+	locationId: smallint("location_id").references(() => LocationTable.id),
 });

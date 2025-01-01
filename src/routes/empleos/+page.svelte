@@ -3,3 +3,5 @@
     // biome-ignore lint/style/useConst: <explanation>
     let { data }: { data: PageData } = $props();
 </script>
+
+<h1>Empleos</h1>

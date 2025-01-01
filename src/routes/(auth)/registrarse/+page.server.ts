@@ -25,9 +25,3 @@ export const actions: Actions = {
 		};
 	},
 };
-
-// <!-- id: bigint({ mode: "bigint" }).primaryKey(),
-// 	name: varchar({ length: 100 }).notNull(),
-// 	email: varchar({ length: 100 }).notNull(),
-// 	password: varchar({ length: 255 }).notNull(),
-// 	birthDate: date({ mode: "date" }).notNull(), -->

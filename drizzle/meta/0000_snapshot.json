@@ -1,9 +1,65 @@
 {
-  "id": "8396496f-5f19-413e-880b-01c42a57e47b",
+  "id": "7699c0bb-62dc-4207-973c-337e110231bc",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.job_requirement": {
+      "name": "job_requirement",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "job_requirement_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "job_id": {
+          "name": "job_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "text": {
+          "name": "text",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "job_requirement_job_id_job_id_fk": {
+          "name": "job_requirement_job_id_job_id_fk",
+          "tableFrom": "job_requirement",
+          "tableTo": "job",
+          "columnsFrom": [
+            "job_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.job": {
       "name": "job",
       "schema": "",
@@ -12,7 +68,37 @@
           "name": "id",
           "type": "bigint",
           "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "job_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(50)",
+          "primaryKey": false,
           "notNull": true
+        },
+        "job_type": {
+          "name": "job_type",
+          "type": "jobtype",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "salary": {
+          "name": "salary",
+          "type": "numeric(2, 6)",
+          "primaryKey": false,
+          "notNull": false
         },
         "created_at": {
           "name": "created_at",
@@ -30,15 +116,86 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.province": {
-      "name": "province",
+    "public.job_to_location": {
+      "name": "job_to_location",
+      "schema": "",
+      "columns": {
+        "job_id": {
+          "name": "job_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "job_to_location_job_id_job_id_fk": {
+          "name": "job_to_location_job_id_job_id_fk",
+          "tableFrom": "job_to_location",
+          "tableTo": "job",
+          "columnsFrom": [
+            "job_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "job_to_location_location_id_location_id_fk": {
+          "name": "job_to_location_location_id_location_id_fk",
+          "tableFrom": "job_to_location",
+          "tableTo": "location",
+          "columnsFrom": [
+            "location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "job_to_location_job_id_location_id_pk": {
+          "name": "job_to_location_job_id_location_id_pk",
+          "columns": [
+            "job_id",
+            "location_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.location": {
+      "name": "location",
       "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "smallint",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "location_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "32767",
+            "cache": "1",
+            "cycle": false
+          }
         },
         "name": {
           "name": "name",
@@ -57,15 +214,15 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "province_name_unique": {
-          "name": "province_name_unique",
+        "location_name_unique": {
+          "name": "location_name_unique",
           "nullsNotDistinct": false,
           "columns": [
             "name"
           ]
         },
-        "province_slug_unique": {
-          "name": "province_slug_unique",
+        "location_slug_unique": {
+          "name": "location_slug_unique",
           "nullsNotDistinct": false,
           "columns": [
             "slug"
@@ -84,7 +241,18 @@
           "name": "id",
           "type": "bigint",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "user_profile_info_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
         },
         "user_id": {
           "name": "user_id",
@@ -121,10 +289,10 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "user_profile_info_location_id_province_id_fk": {
-          "name": "user_profile_info_location_id_province_id_fk",
+        "user_profile_info_location_id_location_id_fk": {
+          "name": "user_profile_info_location_id_location_id_fk",
           "tableFrom": "user_profile_info",
-          "tableTo": "province",
+          "tableTo": "location",
           "columnsFrom": [
             "location_id"
           ],
@@ -149,7 +317,18 @@
           "name": "id",
           "type": "bigint",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "user_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
         },
         "name": {
           "name": "name",
@@ -186,13 +365,30 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "user_email_unique": {
+          "name": "user_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
     }
   },
   "enums": {
+    "public.jobtype": {
+      "name": "jobtype",
+      "schema": "public",
+      "values": [
+        "remote",
+        "hybrid",
+        "onsite"
+      ]
+    },
     "public.genre": {
       "name": "genre",
       "schema": "public",
