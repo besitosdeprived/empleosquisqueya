@@ -1,6 +1,6 @@
 {
-  "id": "c2176d4d-5f4b-45a7-b277-969bbe699342",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "4a5b5ac0-cab3-4771-b402-a68647eff127",
+  "prevId": "06fff81d-c6bf-4edb-9486-d3413a14ff33",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -150,7 +150,7 @@
           "primaryKey": false,
           "notNull": false,
           "generated": {
-            "as": "unaccent(LOWER(TRIM(tille)))",
+            "as": "(LOWER(TRIM(title)))",
             "type": "stored"
           }
         },

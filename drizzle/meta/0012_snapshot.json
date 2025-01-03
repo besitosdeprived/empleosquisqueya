@@ -1,6 +1,6 @@
 {
-  "id": "c2176d4d-5f4b-45a7-b277-969bbe699342",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "43214865-4424-43d8-a1c4-230037535f12",
+  "prevId": "4f1b30a9-6d91-48ce-9c79-cf8b9c354cfb",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -148,9 +148,9 @@
           "name": "slug",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "generated": {
-            "as": "unaccent(LOWER(TRIM(tille)))",
+            "as": "(REPLACE(LOWER(TRIM(title)), ' ', '-') || '-' || nanoid(5))",
             "type": "stored"
           }
         },
@@ -198,7 +198,15 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "job_slug_unique": {
+          "name": "job_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false

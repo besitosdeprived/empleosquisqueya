@@ -12,6 +12,12 @@
     </div>
     <div>
         <fieldset>
+            <legend>Descripcion</legend>
+            <textarea name="" id=""> Escribe aqui </textarea>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset>
             <legend>Tipo de trabajo</legend>
             <div>
                 <input
@@ -44,7 +50,7 @@
     </div>
     <div>
         <fieldset>
-            <!-- <legend>Ubicacion</legend> -->
+            <legend>Ubicacion</legend>
             <div id="location">
                 {#each data.locations as { id, name }}
                     <div>
@@ -65,7 +71,7 @@
 <style>
     form {
         padding: 2rem;
-        border: 1px solid black;
+        border: 1px solid rgb(228, 212, 212);
         width: 500px;
     }
 

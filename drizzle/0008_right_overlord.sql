@@ -1,0 +1,1 @@
+ALTER TABLE "job" ALTER COLUMN "suffix" SET DEFAULT 'nanoid(5)';

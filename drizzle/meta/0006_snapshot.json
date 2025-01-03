@@ -1,6 +1,6 @@
 {
-  "id": "c2176d4d-5f4b-45a7-b277-969bbe699342",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "1460b3a9-eda3-4d36-8c62-e55bc84bb3c8",
+  "prevId": "943d1255-6f76-4d62-8173-05e5aae6ddc8",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -144,13 +144,20 @@
           "primaryKey": false,
           "notNull": true
         },
+        "suffix": {
+          "name": "suffix",
+          "type": "varchar(5)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'gen_random_uuid()'"
+        },
         "slug": {
           "name": "slug",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "generated": {
-            "as": "unaccent(LOWER(TRIM(tille)))",
+            "as": "(REPLACE(LOWER(TRIM(title)), ' ', '-') || '-' || suffix)",
             "type": "stored"
           }
         },
@@ -198,7 +205,15 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "job_slug_unique": {
+          "name": "job_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false

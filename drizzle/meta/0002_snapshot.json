@@ -1,6 +1,6 @@
 {
-  "id": "392f0815-fe00-4dee-96cc-007d62e3332f",
-  "prevId": "2ef23ca6-c85c-4c02-9958-4cad593fd215",
+  "id": "06fff81d-c6bf-4edb-9486-d3413a14ff33",
+  "prevId": "8f94efa3-47bd-4f0d-a309-2b8c8a67dac0",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -144,25 +144,21 @@
           "primaryKey": false,
           "notNull": true
         },
-        "suffix": {
-          "name": "suffix",
-          "type": "varchar(5)",
+        "slug": {
+          "name": "slug",
+          "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "generated": {
-            "as": "substring(gen_random_uuid()::text FROM 1 FOR 5)",
+            "as": "(LOWER(TRIM(tille)))",
             "type": "stored"
           }
         },
-        "slug": {
-          "name": "slug",
+        "info": {
+          "name": "info",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "generated": {
-            "as": "REGEXP_REPLACE(LOWER(TRIM(\"job\".\"title\")), 's+', '-', 'g') || '-' || \"job\".\"suffix\"",
-            "type": "stored"
-          }
+          "notNull": false
         },
         "job_type": {
           "name": "job_type",
@@ -173,9 +169,15 @@
         },
         "salary": {
           "name": "salary",
-          "type": "numeric(2, 6)",
+          "type": "numeric(10, 2)",
           "primaryKey": false,
           "notNull": false
+        },
+        "author_id": {
+          "name": "author_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
         },
         "created_at": {
           "name": "created_at",
@@ -186,17 +188,23 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "job_slug_unique": {
-          "name": "job_slug_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "slug"
-          ]
+      "foreignKeys": {
+        "job_author_id_user_id_fk": {
+          "name": "job_author_id_user_id_fk",
+          "tableFrom": "job",
+          "tableTo": "user",
+          "columnsFrom": [
+            "author_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
@@ -275,7 +283,7 @@
           "name": "tag_id",
           "type": "bigint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         }
       },
       "indexes": {},

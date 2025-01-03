@@ -8,30 +8,31 @@ import {
 	numeric,
 	primaryKey,
 	boolean,
+	char,
 	text,
+	uuid,
 } from "drizzle-orm/pg-core";
 import { LocationTable } from "./location";
 import { type SQL, sql } from "drizzle-orm";
+import { UserTable } from "./user";
 
 export const jobTypeEnum = pgEnum("jobtype", ["remote", "hybrid", "onsite"]);
 
 export const JobTable = pgTable("job", {
 	id: bigint({ mode: "bigint" }).primaryKey().generatedAlwaysAsIdentity(),
 	title: varchar({ length: 50 }).notNull(),
-	suffix: varchar({ length: 5 })
+	suffix: char({ length: 5 }).default(sql`nanoid(5)`),
+	slug: varchar({ length: 255 })
 		.generatedAlwaysAs(
-			(): SQL => sql`substring(gen_random_uuid()::text FROM 1 FOR 5)`,
-		)
-		.notNull(),
-	slug: text()
-		.generatedAlwaysAs(
-			(): SQL =>
-				sql`REGEXP_REPLACE(LOWER(TRIM(${JobTable.title})), '\s+', '-', 'g') || '-' || ${JobTable.suffix}`,
+			"(REPLACE(LOWER(TRIM(unaccent(title))), ' ', '-') || '-' || suffix)",
 		)
 		.unique()
 		.notNull(),
 	jobType: jobTypeEnum("job_type").notNull(),
-	salary: numeric({ scale: 6, precision: 2 }),
+	salary: numeric({ precision: 10, scale: 2 }),
+	authorId: bigint("author_id", { mode: "bigint" })
+		.references(() => UserTable.id)
+		.notNull(),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -81,7 +82,9 @@ export const JobToTagJunctionTable = pgTable(
 		jobId: bigint("job_id", { mode: "bigint" })
 			.references(() => JobTable.id)
 			.notNull(),
-		tagId: bigint("tag_id", { mode: "bigint" }).references(() => TagTable.id),
+		tagId: bigint("tag_id", { mode: "bigint" })
+			.references(() => TagTable.id)
+			.notNull(),
 	},
 	(t) => [primaryKey({ columns: [t.jobId, t.tagId] })],
 );
