@@ -1,1 +1,0 @@
-ALTER TABLE "job" ALTER COLUMN "suffix" SET DEFAULT 'SUBSTRING(gen_random_uuid(), 1, 5)';

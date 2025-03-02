@@ -1,5 +1,8 @@
 <script lang="ts">
+  import PaTestear from "$lib/components/PaTestear.svelte";
   import type { PageData } from "./$types";
-  // biome-ignore lint/style/useConst: <explanation>
+
   let { data }: { data: PageData } = $props();
 </script>
+
+<PaTestear />

@@ -5,120 +5,36 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1735908758712,
-      "tag": "0000_faulty_invaders",
+      "when": 1739719683068,
+      "tag": "0000_sturdy_prowler",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1735908858437,
-      "tag": "0001_calm_black_bird",
+      "when": 1739732564207,
+      "tag": "0001_sudden_shaman",
       "breakpoints": true
     },
     {
       "idx": 2,
       "version": "7",
-      "when": 1735908888299,
-      "tag": "0002_bizarre_caretaker",
+      "when": 1740062776756,
+      "tag": "0002_tiresome_psynapse",
       "breakpoints": true
     },
     {
       "idx": 3,
       "version": "7",
-      "when": 1735909417678,
-      "tag": "0003_red_invaders",
+      "when": 1740141202075,
+      "tag": "0003_wooden_morph",
       "breakpoints": true
     },
     {
       "idx": 4,
       "version": "7",
-      "when": 1735909664859,
-      "tag": "0004_rich_wither",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1735910658613,
-      "tag": "0005_red_doctor_strange",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1735910733821,
-      "tag": "0006_bent_vapor",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1735910837283,
-      "tag": "0007_lazy_marvel_boy",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1735911130784,
-      "tag": "0008_right_overlord",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "7",
-      "when": 1735911213400,
-      "tag": "0009_slow_loki",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "7",
-      "when": 1735911325954,
-      "tag": "0010_flowery_maria_hill",
-      "breakpoints": true
-    },
-    {
-      "idx": 11,
-      "version": "7",
-      "when": 1735911798355,
-      "tag": "0011_steady_siren",
-      "breakpoints": true
-    },
-    {
-      "idx": 12,
-      "version": "7",
-      "when": 1735911893040,
-      "tag": "0012_sparkling_dark_phoenix",
-      "breakpoints": true
-    },
-    {
-      "idx": 13,
-      "version": "7",
-      "when": 1735912044016,
-      "tag": "0013_fast_martin_li",
-      "breakpoints": true
-    },
-    {
-      "idx": 14,
-      "version": "7",
-      "when": 1735913956191,
-      "tag": "0014_abandoned_hairball",
-      "breakpoints": true
-    },
-    {
-      "idx": 15,
-      "version": "7",
-      "when": 1735914219207,
-      "tag": "0015_many_major_mapleleaf",
-      "breakpoints": true
-    },
-    {
-      "idx": 16,
-      "version": "7",
-      "when": 1735914843893,
-      "tag": "0016_lying_moira_mactaggert",
+      "when": 1740141580589,
+      "tag": "0004_known_nightmare",
       "breakpoints": true
     }
   ]

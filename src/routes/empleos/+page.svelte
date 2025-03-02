@@ -1,7 +1,16 @@
 <script lang="ts">
-    import type { PageData } from "./$types";
-    // biome-ignore lint/style/useConst: <explanation>
-    let { data }: { data: PageData } = $props();
+import JobPreview from "$lib/components/JobPreview.svelte";
+import type { PageData } from "./$types";
+// biome-ignore lint/style/useConst: <explanation>
+let { data }: { data: PageData } = $props();
 </script>
 
-<h1>Empleos</h1>
+<a href="/empleos/nuevo">create new job</a>
+
+<div>
+  {#if data.jobs}
+    {#each data.jobs as job}
+      <JobPreview {job} />
+    {/each}
+  {/if}
+</div>

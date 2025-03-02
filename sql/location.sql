@@ -32,4 +32,3 @@ INSERT INTO location (name, slug) VALUES
 ('Santiago Rodriguez', 'santiago-rodriguez'),
 ('Santo Domingo', 'santo-domingo'),
 ('Valverde', 'valverde');
-
