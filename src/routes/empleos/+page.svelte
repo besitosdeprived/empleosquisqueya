@@ -5,9 +5,11 @@ import type { PageData } from "./$types";
 let { data }: { data: PageData } = $props();
 </script>
 
-<a href="/empleos/nuevo">create new job</a>
+<div class="flex justify-end px-5">
+  <a class="text-xl border-2 border-gray-400 px-2 rounded-md" href="/empleos/nuevo">nuevo trabajo</a>
+</div>
 
-<div>
+<div class="flex flex-col items-center py-4">
   {#if data.jobs}
     {#each data.jobs as job}
       <JobPreview {job} />

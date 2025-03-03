@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { enhance } from "$app/forms";
-  import CustomFieldset from "$lib/components/CustomFieldset.svelte";
-  import FailAlert from "$lib/FailAlert.svelte";
-  import type { PageData, ActionData } from "./$types";
-  // biome-ignore lint/style/useConst: <explanation>
-  let { data, form }: { data: PageData; form: ActionData } = $props();
-  // biome-ignore lint/style/useConst: <explanation>
-  let divContent = $state<string>();
+import { enhance } from "$app/forms";
+import CustomFieldset from "$lib/components/CustomFieldset.svelte";
+import FailAlert from "$lib/FailAlert.svelte";
+import type { PageData, ActionData } from "./$types";
+// biome-ignore lint/style/useConst: <explanation>
+let { data, form }: { data: PageData; form: ActionData } = $props();
+// biome-ignore lint/style/useConst: <explanation>
+let divContent = $state<string>();
 </script>
 
 <div class="flex justify-center items-center min-h-screen bg-gray-50">

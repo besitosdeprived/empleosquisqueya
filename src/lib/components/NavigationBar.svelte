@@ -1,23 +1,24 @@
+<script lang="ts" module>
+export type Path = {
+	name: string;
+	href: string;
+};
+</script>
 <script lang="ts">
-	type Path = {
-		name: string;
-		href: string;
-	};
-	type Props = {
-		paths?: Path[];
-	};
-	const defaultNav: Path[] = [
-		{ href: "/", name: "home" },
-		{ href: "/empleos", name: "empleos" },
-		{ href: "/iniciar-sesion", name: "iniciar sesion" },
-		{ href: "/registrarse", name: "registrarse" },
-	];
-	// biome-ignore lint/style/useConst: <explanation>
-	let { paths = defaultNav }: Props = $props();
+type Props = {
+	paths: Path[];
+};
+let { paths }: Props = $props();
 </script>
 
-<nav class="h-20 flex items-center justify-center gap-4 p-4">
-	{#each paths as { href, name }}
-		<a class="text-xl hover:text-blue-400" {href}>{name}</a>
+<nav class="flex h-16  items-center justify-center px-4 gap-4">
+	{#each paths as {href, name}, index }
+		{#if index < 2}
+		<a class="text-xl border-2 border-gray-400 px-2 rounded-md" href={href}>{name}</a>
+		{:else }
+		<div class="flex-1 flex justify-end">
+			<a class="text-xl border-2 border-gray-400 px-2 rounded-md" href={href}>{name}</a>
+		</div>
+		{/if}
 	{/each}
 </nav>

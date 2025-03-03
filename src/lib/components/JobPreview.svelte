@@ -8,7 +8,7 @@ type Props = {
 let { job }: Props = $props();
 </script>
 
-<article class="border-2 rounded-lg p-4 max-w-[600px] mb-4">
+<article class="border-2 rounded-lg p-4 w-full min-w-[400px] max-w-[800px] mb-4">
   <a href={`empleos/${job.jobPost.slug}`} class="no-underline">
     <h3 class="text-xl">{job.title}</h3>
   </a>
