@@ -1,15 +1,17 @@
 import { fail, error, redirect, isRedirect } from "@sveltejs/kit";
 import type { PageServerLoad, Actions } from "./$types";
 import { db } from "$lib/server/db/db";
-import jwt from "jsonwebtoken";
-import { setAccessTokenSessionCookie } from "$lib/auth";
+import { setAccessTokenSessionCookie, verifyAccessTokenSessionCookie } from "$lib/auth";
 export const load = (async ({ cookies }) => {
+	if (verifyAccessTokenSessionCookie(cookies)) {
+		redirect(301, "/empleos")
+	}
 	return {};
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-	default: async (event) => {
-		const formData = await event.request.formData();
+	default: async ({ cookies, request }) => {
+		const formData = await request.formData();
 		const email = String(formData.get("email"));
 		const password = String(formData.get("password"));
 		try {
@@ -38,7 +40,7 @@ export const actions: Actions = {
 					user: "Usuario o contrasenia son incorrectos",
 				});
 			}
-			setAccessTokenSessionCookie(event, { id: fUser.id.toString() }, 60 * 5);
+			setAccessTokenSessionCookie(cookies, { id: fUser.id.toString() }, 60 * 5);
 			throw redirect(302, "/empleos");
 		} catch (error) {
 			if (isRedirect(error)) {

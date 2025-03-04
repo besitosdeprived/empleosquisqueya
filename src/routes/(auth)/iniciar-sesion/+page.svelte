@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { enhance } from "$app/forms";
-  import FailAlert from "$lib/FailAlert.svelte";
-  import type { PageData, ActionData } from "./$types";
+import { enhance } from "$app/forms";
+import FailAlert from "$lib/FailAlert.svelte";
+import type { PageData, ActionData } from "./$types";
 
-  let { data, form }: { data: PageData; form: ActionData } = $props();
+let { data, form }: { data: PageData; form: ActionData } = $props();
 </script>
 
 <div class="p-4 max-w-[600px]">

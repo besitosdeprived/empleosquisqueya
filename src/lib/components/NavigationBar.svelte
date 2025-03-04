@@ -11,7 +11,7 @@ type Props = {
 let { paths }: Props = $props();
 </script>
 
-<nav class="flex h-16  items-center justify-center px-4 gap-4">
+<nav class="flex h-16  items-center justify-center px-10 gap-4">
 	{#each paths as {href, name}, index }
 		{#if index < 2}
 		<a class="text-xl border-2 border-gray-400 px-2 rounded-md" href={href}>{name}</a>

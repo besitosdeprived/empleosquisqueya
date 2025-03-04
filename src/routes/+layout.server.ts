@@ -4,10 +4,8 @@ import {
 } from "$lib/auth";
 import type { Actions, LayoutServerLoad } from "./$types";
 export const load = (async ({ cookies }) => {
-	const isvalid = verifyAccessTokenSessionCookie(
-		cookies.get("access_token") ?? null,
-	);
+	const isValid = verifyAccessTokenSessionCookie(cookies) !== null
 	return {
-		isvalid,
+		isValid: isValid
 	};
 }) satisfies LayoutServerLoad;
