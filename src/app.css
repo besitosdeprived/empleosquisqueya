@@ -1,8 +1,10 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
+
 
 @theme {
-	--color-primary-lime: oklch(0.841 0.238 128.85);
-	--color-secundary-lime: oklch(0.532 0.157 131.589);
-	--color-tertiary-lime: oklch(0.274 0.072 132.109);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-primary: oklch(0.768 0.233 130.85)
+  --color-secundary: oklch(0.648 0.2 131.684);
+  --color-terciary: oklch(0.274 0.072 132.109);
 }

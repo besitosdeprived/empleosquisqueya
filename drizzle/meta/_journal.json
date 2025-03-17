@@ -36,6 +36,48 @@
       "when": 1740141580589,
       "tag": "0004_known_nightmare",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1741975146291,
+      "tag": "0005_absent_black_widow",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1741993370346,
+      "tag": "0006_fresh_tinkerer",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1741993387232,
+      "tag": "0007_concerned_norrin_radd",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1741993405815,
+      "tag": "0008_conscious_jackal",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1742047456035,
+      "tag": "0009_eager_puppet_master",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1742050039939,
+      "tag": "0010_far_blacklash",
+      "breakpoints": true
     }
   ]
 }

@@ -1,0 +1,1 @@
+CREATE TYPE "public"."job_post_status" AS ENUM('published', 'archived', 'pending');
