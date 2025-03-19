@@ -1,13 +1,13 @@
-import { reset, seed } from "drizzle-seed"
-import { db } from "../db"
+import { reset, seed } from "drizzle-seed";
+import { db } from "../db";
 import * as jobsSchema from "./schema/jobs.schema";
 import * as usersSchema from "./schema/users.schema";
 import { sql } from "drizzle-orm";
 export async function seedThis() {
-  const locations = await db.query.LocationTable.findMany()
-  console.log(locations)
-  if (locations.length === 0) {
-    await db.execute(sql`INSERT INTO location (name, slug) VALUES
+	const locations = await db.query.LocationTable.findMany();
+	console.log(locations);
+	if (locations.length === 0) {
+		await db.execute(sql`INSERT INTO location (name, slug) VALUES
 ('Remoto','remoto'),
 ('Azua', 'azua'),
 ('Bahoruco', 'bahoruco'),
@@ -40,32 +40,34 @@ export async function seedThis() {
 ('Santiago', 'santiago'),
 ('Santiago Rodriguez', 'santiago-rodriguez'),
 ('Santo Domingo', 'santo-domingo'),
-('Valverde', 'valverde');`)
-  }
-  await seed(db, { user: usersSchema.userTable, job: jobsSchema.jobTable, jobInfo: jobsSchema.jobPostInfoTable }).refine((f) => ({
-    user: {
-      count: 20,
-      columns: {
-        name: f.firstName(),
-        email: f.email(),
-      }
-    },
-    job: {
-      count: 50,
-      columns: {
-        content: f.loremIpsum({ sentencesCount: 50 }),
-        title: f.city(),
-        salary: f.int({ minValue: 1000, maxValue: 25000 })
-      },
-    },
-    jobInfo: {
-      count: 50,
-      columns: {
-        jobId: f.int({ minValue: 1, maxValue: 50, isUnique: true }),
-        slug: f.uuid()
-      }
-    }
-  }))
+('Valverde', 'valverde');`);
+	}
+	await seed(db, {
+		user: usersSchema.userTable,
+		job: jobsSchema.jobTable,
+		jobInfo: jobsSchema.jobPostInfoTable,
+	}).refine((f) => ({
+		user: {
+			count: 20,
+			columns: {
+				name: f.firstName(),
+				email: f.email(),
+			},
+		},
+		job: {
+			count: 50,
+			columns: {
+				content: f.loremIpsum({ sentencesCount: 50 }),
+				title: f.city(),
+				salary: f.int({ minValue: 1000, maxValue: 25000 }),
+			},
+		},
+		jobInfo: {
+			count: 50,
+			columns: {
+				jobId: f.int({ minValue: 1, maxValue: 50, isUnique: true }),
+				slug: f.uuid(),
+			},
+		},
+	}));
 }
-
-

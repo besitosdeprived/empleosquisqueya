@@ -17,7 +17,7 @@
 		"drizzle:seed": "deno run -A --unstable-sloppy-imports src/lib/server/db/seed.ts"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
+		"@biomejs/biome": "^1.9.4",
 		"@sveltejs/adapter-node": "^5.2.12",
 		"@sveltejs/kit": "^2.20.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
