@@ -12,5 +12,5 @@ if (!env.DATABASE_URL) throw new Error("DATABASE_URL is not set");
 const client = postgres(DATABASE_URL);
 
 export const db = drizzle(client, {
-	schema: { ...relations, ...locations, ...users, ...jobs, ...junctions }, logger: true,
+	schema: { ...relations, ...locations, ...users, ...jobs, ...junctions },
 });

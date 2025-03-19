@@ -1,16 +1,19 @@
 <script lang="ts">
+    import FilterSearch from "$lib/ui/FilterSearch.svelte";
     import JobPreview from "$lib/ui/JobPreview.svelte";
     import type { PageData } from "./$types";
     let { data }: { data: PageData } = $props();
-    console.log(data.job.at(0)?.jobPostInfo.slug);
 </script>
 
-<div class="border-2 h-8">
-    <form action="" method="get" class="w-full">
-        <input type="text" name="job_type" value="remote" />
-        <button>Filter</button>
-    </form>
+<!-- <FilterSearch /> -->
+
+<div class="flex gap-2">
+    <main class="w-2/3">
+        {#each data.job as job}
+            <JobPreview {job} />
+        {/each}
+    </main>
+    <div class="border-1 min-w-fit flex-1 my-4">
+        <FilterSearch />
+    </div>
 </div>
-{#each data.job as job}
-    <JobPreview {job} />
-{/each}
